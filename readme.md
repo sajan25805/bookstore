@@ -43,6 +43,7 @@ http://localhost:4000/api-docs/
 Swagger is used here to describe the structure of the APIs.
 To run the [Swagger UI](http://localhost:4000/api-docs/) run the command `npm run swagger` and use the route
 http://localhost:4000/api-docs/ in the browser.
+![swagger](/public/swagger.png)
 
 ---
 
