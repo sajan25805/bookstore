@@ -41,7 +41,12 @@ http://localhost:4000/api-docs/
 ### Swagger
 
 Swagger is used here to describe the structure of the APIs.
-To run the Swagger UI
+To run the Swagger use this route
+[Swagger UI](http://localhost:4000/api-docs/)
+
+Swagger is used here to describe the structure of the APIs.
+To run the Swagger UI run the command `npm run swagger` and use the route
+http://localhost:4000/api-docs/ in the browser.
 
 ---
 
@@ -49,34 +54,19 @@ To run the Swagger UI
 
 ---
 
+### Status Codes
+
+simpleblog API returns the following status codes.
+
+| Status Code |       Description       |
+| :---------- | :---------------------: |
+| 200         |          `OK`           |
+| 400         |      `BAD REQUEST`      |
+| 404         |       `Not Found`       |
+| 500         | `Internal Server Error` |
+
 ### Endpoints
 
 ---
 
 Currently there are six endpoints available, one for adding, one for updating, one for deleting, one for listing, one for searching, and one for returning the specific Book by Id.
-
-## API Reference
-
-#### Get all items
-
-```http
-  GET /api/items
-```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. Your API key |
-
-#### Get item
-
-```http
-  GET /api/items/${id}
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
-
-#### add(num1, num2)
-
-Takes two numbers and returns the sum.
