@@ -54,21 +54,41 @@ export class BookController {
   async updateBookById(req, res) {
     const { id } = req.params;
     if (id) {
-      const data = await bookModel.update(req.body, {
-        where: {
-          id: id,
-        },
-      });
-      console.log(data);
-      if (data[0] === 1) {
-        res.status(200).json({
+      const data = await bookModel
+        .findOne({ where: { id } })
+        .on("success", function (data) {
+          console.log(data, "test");
+          // Check if record exists in db
+          if (data) {
+            data
+              .update({
+                title: "a very different title now",
+              })
+              .success(function () {});
+          }
+        });
+
+      // update(
+      //   { ...req.body },
+      //   {
+      //     where: {
+      //       id: id,
+      //     },
+      //   }
+      // );
+
+      console.log(data, "data");
+      if (data) {
+        return res.status(200).json({
           success: true,
           message: "Successfully Updated to the Database",
         });
       } else
-        res.status(400).json({ success: false, message: "BOOK ID Invalid" });
-    } else
-      res.status(404).json({ success: false, message: "BOOK_ID_NOT_PROVIDED" });
+        return res
+          .status(400)
+          .json({ success: false, message: "BOOK ID Invalid" });
+    }
+    res.status(404).json({ success: false, message: "BOOK_ID_NOT_PROVIDED" });
   }
 
   //Delete Book By ID
