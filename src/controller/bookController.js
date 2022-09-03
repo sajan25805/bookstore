@@ -54,16 +54,20 @@ export class BookController {
   async updateBookById(req, res) {
     const { id } = req.params;
     if (id) {
-      const data = await bookModel.update(
-        { ...req.body },
-        {
-          where: {
-            id,
-          },
-        }
-      );
+      const data = bookModel
+        .update(
+          { ...req.body },
+          {
+            where: {
+              id,
+            },
+          }
+        )
+        .then((data) => {
+          console.log(data);
+        });
       console.log(data);
-      if (data[0] == 1) {
+      if (data[0] === 1) {
         return res.status(200).json({
           success: true,
           message: "Successfully Updated to the Database",
@@ -72,8 +76,8 @@ export class BookController {
         return res
           .status(400)
           .json({ success: false, message: "BOOK ID Invalid" });
-    } else
-      res.status(404).json({ success: false, message: "BOOK_ID_NOT_PROVIDED" });
+    }
+    res.status(404).json({ success: false, message: "BOOK_ID_NOT_PROVIDED" });
   }
 
   //Delete Book By ID
