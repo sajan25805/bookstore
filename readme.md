@@ -21,19 +21,31 @@ It is a basic web service for a book management system that allows the API user 
   npm install
 ```
 
+- Setup env
+
+```bash
+  cp .env.exapmle .env
+```
+
+- Create Database
+
+```bash
+  npm run migrate
+```
+
 - Start
 
 ```bash
   npm start
 ```
 
-- Start Swagger UI
+- Start Swagger
 
 ```bash
   npm  run swagger
 ```
 
-Use this route to run Swagger API Documentation [Swagger UI](http://localhost:4000/api-docs/)
+Use this route to run Swagger API Documentation [Swagger](http://localhost:4000/api-docs/)
 http://localhost:4000/api-docs/
 
 ---
@@ -56,12 +68,11 @@ Here is an demo of what you will see in the `swagger`
 
 simpleblog API returns the following status codes.
 
-| Status Code |       Description       |
-| :---------- | :---------------------: |
-| 200         |          `OK`           |
-| 400         |      `BAD REQUEST`      |
-| 404         |       `Not Found`       |
-| 500         | `Internal Server Error` |
+| Status Code |  Description  |
+| :---------- | :-----------: |
+| 200         |     `OK`      |
+| 400         | `BAD REQUEST` |
+| 404         |  `Not Found`  |
 
 ### Endpoints
 
@@ -73,13 +84,23 @@ Currently there are six endpoints available, one for adding, one for updating, o
 
 `Post /books/add`
 
+##### Request Example (Form Data)
+
+| Form Fields  |           Value            |
+| :----------- | :------------------------: |
+| Content-Type |    multipart/form-data     |
+| name         |       harayeko yatri       |
+| isbn         |           111456           |
+| image        | @image.jpg;type=image/jpeg |
+
 ##### Response Example
 
-```{
+```json
+{
   "id": 0,
   "name": "harayeko yatri",
   "isbn": "111456",
-  "image": "photo.jpg"
+  "image": "http://localhost:8000/uploads/1662231041161-204712449-photo.jpg"
 }
 ```
 
@@ -89,11 +110,12 @@ Currently there are six endpoints available, one for adding, one for updating, o
 
 ##### Response Example
 
-```{
+```json
+{
   "id": 0,
   "name": "harayeko yatri",
   "isbn": "213215",
-  "image": "photo.jpg"
+  "image": "http://localhost:8000/uploads/1662231041161-204712449-photo.jpg"
 }
 ```
 
@@ -103,18 +125,22 @@ Currently there are six endpoints available, one for adding, one for updating, o
 
 ##### Response Example
 
-```[{
+```json
+[
+  {
   "id": 0,
   "name": "harayeko yatri",
   "isbn": "213215",
-  "image": "photo.jpg"
+  "image": "http://localhost:8000/uploads/1662231041161-204712449-photo.jpg"
  },
  {
   "id": 1,
   "name": "naramro manchhey",
   "isbn": "213216",
-  "image": "photo1.jpg"
- }..]
+  "image": "http://localhost:8000/uploads/1662231041161-204712449-photo.jpg"
+ },
+ ...
+ ]
 ```
 
 #### 4. Search all
@@ -123,23 +149,40 @@ Currently there are six endpoints available, one for adding, one for updating, o
 
 ##### Response Example
 
-```[
+```json
+[
+  {
+    "id": 1,
+    "name": "naramro manchhey",
+    "isbn": "213216",
+  "image": "http://localhost:8000/uploads/1662231041161-204712449-photo.jpg"
+  },
  {
   "id": 1,
   "name": "naramro manchhey",
   "isbn": "213216",
-  "image": "photo1.jpg"
- }
+  "image": "http://localhost:8000/uploads/1662231041161-204712449-photo.jpg"
+ },
+ ...
  ]
+
 ```
 
 #### 5. Update book by Id
 
 `Put /books/update/:id`
 
+##### Request Example
+
+```json
+{
+  "name": "naulo kitab"
+}
+```
+
 ##### Response Example
 
-```
+```json
 {
   "success": true,
   "message": "Successfully Updated to the Database"
@@ -155,6 +198,6 @@ Currently there are six endpoints available, one for adding, one for updating, o
 ```
 {
   "success": true,
-  "message": "Successfully Updated to the Database"
+  "message": "Successfully Deleted"
 }
 ```

@@ -5,7 +5,10 @@ export class BookController {
   // Add Book
   async addBook(req, res, imageName) {
     try {
-      const data = await bookModel.create({ ...req.body, image: imageName });
+      const data = await bookModel.create({
+        ...req.body,
+        image: `http://localhost:${process.env.APP_PORT}/uploads/${imageName}`,
+      });
       console.log(data);
       if (data) {
         res.status(200).json(data);
