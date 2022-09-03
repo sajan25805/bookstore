@@ -125,7 +125,7 @@ Currently there are six endpoints available, one for adding, one for updating, o
 
 ##### Response Example
 
-```json
+```bash
 [
   {
   "id": 0,
@@ -149,7 +149,7 @@ Currently there are six endpoints available, one for adding, one for updating, o
 
 ##### Response Example
 
-```json
+```bash
 [
   {
     "id": 1,
@@ -195,7 +195,7 @@ Currently there are six endpoints available, one for adding, one for updating, o
 
 ##### Response Example
 
-```
+```json
 {
   "success": true,
   "message": "Successfully Deleted"
